@@ -1,0 +1,16 @@
+@OrderService.API_HostAddress = http://localhost:5175
+
+### Get JWT Token
+@host = http://localhost:5263 // Auth host
+
+POST {{host}}/api/Auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "Pwd@12345"
+}
+
+### Call secure endpoint using JWT token
+GET {{host}}/api/Orders/secure-order
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYWRtaW4iLCJleHAiOjE3NDY3ODQ3MzcsImlzcyI6Ik15TWljcm9zZXJ2aWNlc0NsZWFuQXJjaFBPQyIsImF1ZCI6Ik15TWljcm9zZXJ2aWNlc0NsZWFuQXJjaFBPQyJ9.pt5MHh5uas9uBT0IKe9_PnF7iVcieqiCi8C4F2z0yC4

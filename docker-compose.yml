@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  user-service:
+    build: ./Services/UserService/UserService.API
+    ports:
+      - "5263:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on:
+      - db
+
+  order-service:
+    build: ./Services/OrderService/OrderService.API
+    ports:
+      - "5175:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+
+  api-gateway:
+    build: ./Gateway/ApiGateway
+    ports:
+      - "5117:80"
+    depends_on:
+      - user-service
+      - order-service
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
